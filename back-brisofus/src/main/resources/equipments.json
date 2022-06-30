@@ -1,0 +1,45 @@
+[
+
+    {
+        "_id": 103,
+        "ankamaId": 103,
+        "name": "Anneau de Sagesse",
+        "level": 9,
+        "type": "Anneau",
+        "imgUrl": "https://s.ankama.com/www/static.ankama.com/dofus/www/game/items/200/9007.png",
+        "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/equipements/103-anneau-sagesse",
+        "description": "Cet anneau renforce la sagesse de son porteur.",
+        "statistics": [
+            {
+                "Sagesse": {
+                    "min": 7,
+                    "max": 10
+                }
+            }
+        ],
+        "recipe": [
+            {
+                "Os de Chafer": {
+                    "ankamaId": 310,
+                    "url": "https://www.dofus-touch.com/fr/mmorpg/encyclopedie/ressources/310-os-chafer",
+                    "imgUrl": "https://s.ankama.com/www/static.ankama.com/dofus/www/game/items/52/47015.w48h48.png",
+                    "type": "Os",
+                    "level": 5,
+                    "quantity": 3
+                }
+            },
+            {
+                "Peau de Gloot": {
+                    "ankamaId": 16522,
+                    "url": "https://www.dofus-touch.com/fr/mmorpg/encyclopedie/ressources/16522-peau-gloot",
+                    "imgUrl": "https://s.ankama.com/www/static.ankama.com/dofus/www/game/items/52/164066.w48h48.png",
+                    "type": "Peau",
+                    "level": 2,
+                    "quantity": 3
+                }
+            }
+        ],
+        "setId": 0
+    }
+
+    ]

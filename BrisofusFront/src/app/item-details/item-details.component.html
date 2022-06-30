@@ -1,0 +1,73 @@
+<div style="width:100%;margin-left: 50px;">
+  <button mat-raised-button color="primary" (click)="this.back()">Retour</button>
+
+
+  <div style="display: flex;align-items: center;">
+
+    <app-item-image [item]="this.item" [width]=120></app-item-image>
+    <p style="margin-left:50px;font-size: 50px;"> {{this.item.name}}</p>
+  </div>
+  <p style="margin-top: 50px;font-size: 35px;">Craft et statistiques</p>
+  <div style="display:flex;margin-top: 50px;width: 100%;justify-content: space-around;gap:100px;">
+
+    <div class="card">
+      <p-table [value]="this.item.listAttribute">
+          <ng-template pTemplate="header">
+              <tr>
+                  <th pSortableColumn="code">Nom <p-sortIcon field="code"></p-sortIcon></th>
+                  <th pSortableColumn="category">Min <p-sortIcon field="category"></p-sortIcon></th>
+                  <th pSortableColumn="quantity">Max <p-sortIcon field="quantity"></p-sortIcon></th>
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-stat>
+              <tr>
+                  <td>{{stat.nom}}</td>
+                  <td>{{stat.min}}</td>
+                  <td>{{stat.max}}</td>
+              </tr>
+          </ng-template>
+      </p-table>
+  </div>
+
+  <div class="card">
+    <p-table [value]="this.item.listCraftResources">
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="code"></th>
+
+                <th pSortableColumn="resourceItem.name">Nom <p-sortIcon field="code"></p-sortIcon></th>
+                <th pSortableColumn="quantite">Quantite <p-sortIcon field="quantite"></p-sortIcon></th>
+                <th pSortableColumn="quantity">Prix <p-sortIcon field="quantity"></p-sortIcon></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-elem>
+            <tr>
+              <td>
+                <app-item-image [item]="elem.resourceItem" [width]=50></app-item-image>
+              </td>
+              <td>
+                {{elem.resourceItem.name}}
+              </td>
+              <td>{{ elem.quantite }}</td>
+              <td>{{ elem.resourceItem.lastPrice*elem.quantite}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+ 
+  </div>
+
+  <p style="margin-top: 50px;font-size: 35px;">Price tracking</p>
+
+  <div>
+
+  </div>
+  <ngx-charts-line-chart [view]="[700,300]" [results]="this.listOfPrice" [xAxis]="true" [yAxis]="true"
+    [xAxisLabel]="'Jour'" [yAxisLabel]="'Prix de craft'" [showXAxisLabel]="true" [showYAxisLabel]="true">
+  </ngx-charts-line-chart>
+
+  <app-graph-historic-price [label]="'Prix de vente'" [historicPrices]="this.historicPricesHDV"></app-graph-historic-price>
+
+
+
+</div>

@@ -1,0 +1,80 @@
+<div class="screen">
+  <div class="filter">
+
+    <div class="filterHeader">
+      Critères de recherche
+    </div>
+    <div class="filterItems">
+
+      <span class="p-float-label">
+        <input id="float-input" type="text" pInputText [(ngModel)]="searchService.itemFilter.levelMin">
+        <label for="float-input">Niveau minimum</label>
+      </span>
+      <span class="p-float-label">
+        <input id="float-input" type="text" pInputText [(ngModel)]="searchService.itemFilter.levelMax">
+        <label for="float-input">Niveau maximum</label>
+      </span>
+      <p-multiSelect [style]="{'width':'100%'}" [options]="list_type"
+        [(ngModel)]="this.searchService.itemFilter.listType"></p-multiSelect>
+      <p-multiSelect [style]="{'width':'100%'}" [options]="stat_list"
+        [(ngModel)]="this.searchService.itemFilter.listAttribute"></p-multiSelect>
+
+    </div>
+    <p-button label="Rechercher" icon="pi pi-check" iconPos="left" (onClick)="searchItem()"></p-button>
+
+  </div>
+  <div>
+    <div *ngIf="this.loading==false && this.searchService.itemPriceList.length==0">Ceci est vide ..</div>
+    <div *ngIf="this.loading ==true && this.searchService.itemPriceList.length==0" class="listOfItem">
+      <div style="width:360px" class="field col-12 md:col-6 md:pr-6 pr-0" *ngFor='let in of counter(12) ;let i = index'>
+        <div class="custom-skeleton p-4">
+          <div class="flex mb-3">
+            <p-skeleton shape="circle" size="4rem" styleClass="mr-2"></p-skeleton>
+            <div>
+              <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton>
+              <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+              <p-skeleton height=".5rem"></p-skeleton>
+            </div>
+          </div>
+          <p-skeleton width="100%" height="150px"></p-skeleton>
+
+        </div>
+      </div>
+    </div>
+    <div *ngIf="this.searchService.itemPriceList.length!=0" class="listOfItem">
+
+      <p-table [value]="this.searchService.itemPriceList">
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="code"></th>
+
+            <th pSortableColumn="item.name">Nom <p-sortIcon field="code"></p-sortIcon>
+            </th>
+            <th pSortableColumn="price">Dernier prix<p-sortIcon field="price"></p-sortIcon>
+            </th>
+            <th pSortableColumn="averagePrice"> Moyenne <p-sortIcon field="averagePrice"></p-sortIcon></th>
+            <th >Différence </th>
+            <th>Ajout</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-elem>
+          <tr>
+            <td>
+              <app-item-image [item]="elem.item" [width]=60></app-item-image>
+            </td>
+            <td>
+              <a [routerLink]="['/item', elem.item.name]"> {{elem.item.name}}</a>
+
+            </td>
+            <td>
+              {{elem.price}}
+            </td>
+            <td>{{ elem.averagePrice }}</td>
+            <td>{{ elem.price/elem.averagePrice }}</td>
+            <td><button (click)="this.breakingService.addItems(elem.item)">Ajouter</button></td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

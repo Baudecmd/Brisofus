@@ -1,0 +1,16 @@
+.flex-parent{
+  display: flex;
+  align-items: center;
+  height: 50px;
+  align-content: center;
+  column-gap: 10px;
+}
+
+.imglogo{
+  height: 100%;
+  float:left;
+}
+
+.textlogo{
+font-size:20px;
+}
